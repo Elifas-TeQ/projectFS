@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="ssLprojectFS.WelcomePage"
+			 Title="Welcome Page"
+			 Padding="10">
+	
+	<ContentPage.Content>
+		<StackLayout HorizontalOptions="Center"
+					 Padding="20">
+			
+			<Label Text="Hello, my dear friend.&#x0a;Welcome&#x0a;&amp;&#x0a;Enjoy"
+				   HorizontalTextAlignment="Center"/>
+
+			<Button Text="Start"
+					Command="{Binding StartCommand}"/>
+
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

@@ -8,7 +8,7 @@ namespace ssLprojectFS
 		{
 			InitializeComponent();
 
-			MainPage = new ssLprojectFSPage();
+			MainPage = new NavigationPage(new WelcomePage());
 		}
 
 		protected override void OnStart()
