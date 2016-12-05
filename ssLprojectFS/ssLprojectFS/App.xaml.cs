@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using Microsoft.Practices.Unity;
 
 namespace ssLprojectFS
 {
@@ -8,7 +9,11 @@ namespace ssLprojectFS
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new WelcomePage());
+			var navPage = new NavigationPage();
+			var welPage = new WelcomePage(navPage);
+			navPage.PushAsync(welPage);
+
+			MainPage = navPage;
 		}
 
 		protected override void OnStart()
