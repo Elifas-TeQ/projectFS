@@ -2,10 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 x:Class="ssLprojectFS.PersonsListPage"
+			 xmlns:ViewModel="clr-namespace:ssLprojectFS;assembly=ssLprojectFS"
 			 Title="Person's List"
 			 Padding="10">
-	
+
+	<ContentPage.Resources>
+		<ResourceDictionary>
+			<ViewModel:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+		</ResourceDictionary>
+	</ContentPage.Resources>
+
 	<ContentPage.Content>
-		<Label Text="Hello, I'm PL page. "/>
+		<StackLayout HorizontalOptions="Center"
+					 Padding="20">
+				
+			<ListView ItemsSource="{Binding PersonsList}">
+				<ListView.Behaviors>
+					<ViewModel:EventToCommandBehavior EventName="ItemSelected"
+												  	  Command="{Binding ShowDetailsCommand}"
+												  	  Converter="{StaticResource SelectedItemConverter}" />
+				</ListView.Behaviors>
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<TextCell Text="{Binding Name}"
+								  Detail="{Binding Id, StringFormat='Identificator: {0}'}" />
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

@@ -1,21 +1,13 @@
-﻿using System;
-using System.Windows.Input;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ssLprojectFS
 {
 	public partial class WelcomePage : ContentPage
 	{
-		public ICommand StartCommand { private set; get; }
-
-		public WelcomePage()
+		public WelcomePage(NavigationPage navigationPage)
 		{
 			InitializeComponent();
-
-			this.StartCommand = new Command(() =>
-			{
-				Navigation.PushAsync(new PersonsListPage());
-			});
+			BindingContext = new WelcomeViewModel(navigationPage);
 		}
 	}
 }
