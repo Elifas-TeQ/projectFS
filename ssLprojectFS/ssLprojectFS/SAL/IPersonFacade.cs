@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ssLprojectFS
 {
 	public interface IPersonFacade
 	{
-		List<PersonName> GetPersonsList();
-		Person GetPersonInfoById(int id);
+		List<MobileLogShortModel> GetPersonsList();
+		MobileLogModel GetPersonInfoById(int id);
 	}
 }
