@@ -1,4 +1,5 @@
 ﻿using Xamarin.Forms;
+using Microsoft.Practices.ServiceLocation;
 
 namespace ssLprojectFS
 {
@@ -7,7 +8,8 @@ namespace ssLprojectFS
 		public PersonsListPage(NavigationPage navigationPage)
 		{
 			InitializeComponent();
-			BindingContext = new PersonsViewModel(navigationPage);
+			var personFacade = ServiceLocator.Current.GetInstance<IPersonFacade>();
+			BindingContext = new PersonsViewModel(navigationPage, personFacade);
 		}
 	}
 }

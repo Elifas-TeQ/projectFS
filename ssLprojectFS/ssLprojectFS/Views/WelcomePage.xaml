@@ -11,11 +11,11 @@
 					 Padding="20">
 			
 			<Label Text="Hello, my dear friend.&#x0a;Welcome&#x0a;&amp;&#x0a;Enjoy"
-				   HorizontalTextAlignment="Center"/>
+				   HorizontalTextAlignment="Center" />
 
 			<Button Text="Start"
-					Command="{Binding StartCommand}"/>
-
+					Command="{Binding StartCommand}" />
+								
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

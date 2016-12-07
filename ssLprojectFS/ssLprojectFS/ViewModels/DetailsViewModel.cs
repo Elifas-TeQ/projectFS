@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -6,14 +6,15 @@ namespace ssLprojectFS
 {
 	public class DetailsViewModel : BaseViewModel
 	{
-		public Person PersonDetails { get; protected set; }
+		public MobileLogModel LogDetails { get; protected set; }
 		public ICommand BackCommand { get; protected set; }
 		protected NavigationPage navigationPage;
 
-		public DetailsViewModel(NavigationPage navigationPage, int personId)
+		public DetailsViewModel(NavigationPage navigationPage, IPersonFacade personFacade, int personId)
+			: base(personFacade)
 		{
 			this.navigationPage = navigationPage;
-			this.GetPersonsDetails(personId);
+			Task.Factory.StartNew(() => this.GetPersonsDetails(personId));
 
 			this.BackCommand = new Command(async (nothing) =>
 			{
@@ -23,8 +24,14 @@ namespace ssLprojectFS
 
 		private void GetPersonsDetails(int id)
 		{
-			this.PersonDetails = DependencyService.Get<IPersonFacade>().GetPersonInfoById(id);
-			OnPropertyChanged("PersonDetails");
+			base.ActivityIndicatorIsRunning = true;
+			base.ActivityIndicatorIsVisible = true;
+
+			this.LogDetails = this.personFacade.GetPersonInfoById(id);
+			OnPropertyChanged("LogDetails");
+
+			base.ActivityIndicatorIsRunning = false;
+			base.ActivityIndicatorIsVisible = false;
 		}
 	}
 }

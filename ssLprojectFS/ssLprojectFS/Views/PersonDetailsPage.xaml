@@ -9,22 +9,31 @@
 	<ContentPage.Content>
 		<StackLayout HorizontalOptions="Center"
 					 Padding="20">
+
+			<ActivityIndicator IsRunning="{Binding ActivityIndicatorIsRunning}"
+							   IsVisible="{Binding ActivityIndicatorIsVisible}" />
+			
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="*"/>
 					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
 				</Grid.RowDefinitions>
 				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="20" />
+					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="*" />
 				</Grid.ColumnDefinitions>
 
-				<Label Text="{Binding PersonDetails.Id}" Grid.Row="0" Grid.Column="0" />
-				<Label Text="{Binding PersonDetails.Name}" Grid.Row="0" Grid.Column="1" />
-				<Label Text="{Binding PersonDetails.Age}" Grid.Row="1" Grid.Column="0" />
-				<Label Text="{Binding PersonDetails.Description}" Grid.Row="1" Grid.Column="1"/>
+				<Label Text="{Binding LogDetails.Id}" Grid.Row="0" Grid.Column="0" />
+				<Label Text="{Binding LogDetails.Date}" Grid.Row="0" Grid.Column="1" />
+				<Label Text="{Binding LogDetails.Message}" Grid.Row="1" Grid.Column="1" />
+				<Label Text="{Binding LogDetails.LogType}" Grid.Row="2" Grid.Column="1"/>
+				<Label Text="{Binding LogDetails.Tag}" Grid.Row="2" Grid.Column="0"/>
+				<Label Text="{Binding LogDetails.Version}" Grid.Row="3" Grid.Column="0"/>
+				<Label Text="{Binding LogDetails.ApplicationName}" Grid.Row="3" Grid.Column="1"/>
 			</Grid>
-			
+
 			<Button Text="Back"
 					Command="{Binding BackCommand}" />
 		</StackLayout>

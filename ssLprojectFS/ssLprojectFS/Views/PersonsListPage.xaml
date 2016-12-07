@@ -15,8 +15,11 @@
 	<ContentPage.Content>
 		<StackLayout HorizontalOptions="Center"
 					 Padding="20">
-				
-			<ListView ItemsSource="{Binding PersonsList}">
+
+			<ActivityIndicator IsRunning="{Binding ActivityIndicatorIsRunning}"
+							   IsVisible="{Binding ActivityIndicatorIsVisible}" />
+			
+			<ListView ItemsSource="{Binding LogsList}">
 				<ListView.Behaviors>
 					<ViewModel:EventToCommandBehavior EventName="ItemSelected"
 												  	  Command="{Binding ShowDetailsCommand}"
@@ -24,8 +27,8 @@
 				</ListView.Behaviors>
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<TextCell Text="{Binding Name}"
-								  Detail="{Binding Id, StringFormat='Identificator: {0}'}" />
+						<TextCell Text="{Binding Id}"
+								  Detail="{Binding Date, StringFormat='Date: {0}'}" />
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
