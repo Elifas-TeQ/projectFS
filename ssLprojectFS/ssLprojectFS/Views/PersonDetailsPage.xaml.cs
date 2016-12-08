@@ -8,8 +8,8 @@ namespace ssLprojectFS
 		public PersonDetailsPage(NavigationPage navigationPage, int personId)
 		{
 			InitializeComponent();
-			var personFacade = ServiceLocator.Current.GetInstance<IPersonFacade>();
-			BindingContext = new DetailsViewModel(navigationPage, personFacade, personId);
+			var logFacade = ServiceLocator.Current.GetInstance<ILogFacade>();
+			BindingContext = new DetailsViewModel(navigationPage, logFacade, personId);
 		}
 	}
 }

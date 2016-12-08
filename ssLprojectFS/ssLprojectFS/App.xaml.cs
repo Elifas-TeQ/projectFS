@@ -24,7 +24,8 @@ namespace ssLprojectFS
 
 		private void RegisterTypes(IUnityContainer container)
 		{
-			container.RegisterType<IPersonFacade, PersonFacade>();
+			container.RegisterType<IService, Service>();
+			container.RegisterType<ILogFacade, LogFacade>(new InjectionConstructor(typeof(IService)));
 		}
 
 		protected override void OnStart()

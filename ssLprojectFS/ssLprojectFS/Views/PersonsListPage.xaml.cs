@@ -8,7 +8,7 @@ namespace ssLprojectFS
 		public PersonsListPage(NavigationPage navigationPage)
 		{
 			InitializeComponent();
-			var personFacade = ServiceLocator.Current.GetInstance<IPersonFacade>();
+			var personFacade = ServiceLocator.Current.GetInstance<ILogFacade>();
 			BindingContext = new PersonsViewModel(navigationPage, personFacade);
 		}
 	}

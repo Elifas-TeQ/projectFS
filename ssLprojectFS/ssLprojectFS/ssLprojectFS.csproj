@@ -53,16 +53,19 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\PersonsViewModel.cs" />
     <Compile Include="SAL\SAL.Models\MobileLogModel.cs" />
-    <Compile Include="SAL\PersonFacade.cs" />
+    <Compile Include="SAL\LogFacade.cs" />
     <Compile Include="SAL\SAL.Models\MobileLogShortModel.cs" />
     <Compile Include="Views\PersonDetailsPage.xaml.cs">
       <DependentUpon>PersonDetailsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DetailsViewModel.cs" />
-    <Compile Include="SAL\IPersonFacade.cs" />
+    <Compile Include="SAL\ILogFacade.cs" />
     <Compile Include="Tools\Behaviors\BehaviorBase.cs" />
     <Compile Include="Tools\Behaviors\EventToCommandBehavior.cs" />
     <Compile Include="Tools\Converters\SelectedItemEventArgsToSelectedItemConverter.cs" />
+    <Compile Include="SAL\Service.cs" />
+    <Compile Include="SAL\IService.cs" />
+    <Compile Include="Tools\ButtonName\IButtonName.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -104,6 +107,7 @@
     <Folder Include="Tools\" />
     <Folder Include="Tools\Behaviors\" />
     <Folder Include="Tools\Converters\" />
+    <Folder Include="Tools\ButtonName\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

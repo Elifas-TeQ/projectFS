@@ -6,14 +6,13 @@ namespace ssLprojectFS
 	public class BaseViewModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
-
-		protected IPersonFacade personFacade;
+		protected ILogFacade logFacade;
 
 		public BaseViewModel() { }
 
-		public BaseViewModel(IPersonFacade personFacade)
+		public BaseViewModel(ILogFacade logFacade)
 		{
-			this.personFacade = personFacade;
+			this.logFacade = logFacade;
 		}
 
 		protected void OnPropertyChanged(string propertyName)

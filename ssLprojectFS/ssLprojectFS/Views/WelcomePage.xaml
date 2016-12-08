@@ -15,6 +15,9 @@
 
 			<Button Text="Start"
 					Command="{Binding StartCommand}" />
+
+			<Label Text="{Binding ButtonNameProperty}"
+				   HorizontalTextAlignment="Center" />
 								
 		</StackLayout>
 	</ContentPage.Content>

@@ -38,11 +38,23 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.5.28\lib\net45\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="GenFu">
+      <HintPath>..\packages\GenFu.1.2.1\lib\net45\GenFu.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests.cs" />
     <Compile Include="AppInitializer.cs" />
-    <Compile Include="PersonFacadeTest.cs" />
+    <Compile Include="LogFacadeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

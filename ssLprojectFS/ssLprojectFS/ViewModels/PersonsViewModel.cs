@@ -11,12 +11,13 @@ namespace ssLprojectFS
 		public ICommand ShowDetailsCommand { get; protected set; }
 		protected NavigationPage navigationPage;
 
-		public PersonsViewModel(NavigationPage navigationaPage, IPersonFacade personFacade)
-			: base(personFacade)
+		public PersonsViewModel(NavigationPage navigationaPage, ILogFacade logFacade)
+			: base(logFacade)
 
 		{
 			this.navigationPage = navigationaPage;
 			Task.Factory.StartNew(() => this.GetLogsList());
+//			Device.BeginInvokeOnMainThread(() => this.GetLogsList());
 
 			this.ShowDetailsCommand = new Command(async (item) =>
 			{
@@ -26,14 +27,14 @@ namespace ssLprojectFS
 
 		private void GetLogsList()
 		{
-			base.ActivityIndicatorIsRunning = true;
-			base.ActivityIndicatorIsVisible = true;
+			this.ActivityIndicatorIsRunning = true;
+			this.ActivityIndicatorIsVisible = true;
 
-			this.LogsList = this.personFacade.GetPersonsList();
-			OnPropertyChanged("LogsList");
+			this.LogsList = this.logFacade.GetLogsList();
+			this.OnPropertyChanged("LogsList");
 
-			base.ActivityIndicatorIsVisible = false;
-			base.ActivityIndicatorIsRunning = false;
+			this.ActivityIndicatorIsVisible = false;
+			this.ActivityIndicatorIsRunning = false;
 		}
 	}
 }
