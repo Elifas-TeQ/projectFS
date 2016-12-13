@@ -5,6 +5,6 @@ namespace ssLprojectFS
 {
 	public interface IService
 	{
-		Task<List<MobileLogModel>> GetLogsList();
+		Task<IEnumerable<MobileLogModel>> GetLogsList();
 	}
 }

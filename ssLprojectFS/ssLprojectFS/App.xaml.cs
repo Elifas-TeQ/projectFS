@@ -15,16 +15,16 @@ namespace ssLprojectFS
 			var locator = new UnityServiceLocator(container);
 			ServiceLocator.SetLocatorProvider(() => locator);
 
-			var navPage = new NavigationPage();
-			var welPage = new WelcomePage(navPage);
-			navPage.PushAsync(welPage);
+			var navigationPage = new NavigationPage();
+			var welcomePage = new WelcomePage(navigationPage);
+			navigationPage.PushAsync(welcomePage);
 
-			MainPage = navPage;
+			MainPage = navigationPage;
 		}
 
 		private void RegisterTypes(IUnityContainer container)
 		{
-			container.RegisterType<IService, Service>();
+			container.RegisterType<IService, Service>(new ContainerControlledLifetimeManager());
 			container.RegisterType<ILogFacade, LogFacade>(new InjectionConstructor(typeof(IService)));
 		}
 

@@ -9,13 +9,23 @@ namespace ssLprojectFS
 	public class Service : IService
 	{
 		public string Path { get; private set; }
+		private IEnumerable<MobileLogModel> logsList;
 
 		public Service()
 		{
 			this.Path = @"http://10.129.132.116:8082/api/log/";
 		}
 
-		public async Task<List<MobileLogModel>> GetLogsList()
+		public async Task<IEnumerable<MobileLogModel>> GetLogsList()
+		{
+			if (this.logsList == null)
+			{
+				this.logsList = await this.GetLogsListFromCloud();
+			}
+			return this.logsList;
+		}
+
+		private async Task<IEnumerable<MobileLogModel>> GetLogsListFromCloud()
 		{
 			var uri = new Uri(this.Path);
 

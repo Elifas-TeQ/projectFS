@@ -24,14 +24,14 @@ namespace ssLprojectFS
 
 		private void GetPersonsDetails(int id)
 		{
-			this.ActivityIndicatorIsRunning = true;
-			this.ActivityIndicatorIsVisible = true;
+			this.IsActivityIndicatorRunning = true;
+			this.IsActivityIndicatorVisible = true;
 
 			this.LogDetails = this.logFacade.GetLogDetailsById(id);
 			this.OnPropertyChanged("LogDetails");
 
-			this.ActivityIndicatorIsRunning = false;
-			this.ActivityIndicatorIsVisible = false;
+			this.IsActivityIndicatorRunning = false;
+			this.IsActivityIndicatorVisible = false;
 		}
 	}
 }

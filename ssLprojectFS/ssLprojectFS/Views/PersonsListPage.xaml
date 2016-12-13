@@ -15,9 +15,9 @@
 	<ContentPage.Content>
 		<StackLayout HorizontalOptions="Center"
 					 Padding="20">
-
-			<ActivityIndicator IsRunning="{Binding ActivityIndicatorIsRunning}"
-							   IsVisible="{Binding ActivityIndicatorIsVisible}" />
+			
+			<ActivityIndicator IsRunning="{Binding IsActivityIndicatorRunning}"
+							   IsVisible="{Binding IsActivityIndicatorVisible}" />
 			
 			<ListView ItemsSource="{Binding LogsList}">
 				<ListView.Behaviors>
@@ -32,6 +32,10 @@
 					</DataTemplate>
 				</ListView.ItemTemplate>
 			</ListView>
+
+			<Button Text="Load more..."
+					Command="{Binding LoadMoreCommand}"
+					IsEnabled="{Binding IsButtonLoadMoreEnabled}" />
 			
 		</StackLayout>
 	</ContentPage.Content>

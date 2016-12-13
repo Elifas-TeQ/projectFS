@@ -4,7 +4,8 @@ namespace ssLprojectFS
 {
 	public interface ILogFacade
 	{
-		List<MobileLogShortModel> GetLogsList();
+		IEnumerable<MobileLogShortModel> GetLogsList();
+		IEnumerable<MobileLogShortModel> GetNextPartOfLogsList(int index, int count);
 		MobileLogModel GetLogDetailsById(int id);
 	}
 }

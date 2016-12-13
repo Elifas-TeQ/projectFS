@@ -18,7 +18,9 @@
 
 			<Label Text="{Binding ButtonNameProperty}"
 				   HorizontalTextAlignment="Center" />
-				   	
+
+			<Label Text="{Binding Smth}" />
+			
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

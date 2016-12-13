@@ -24,7 +24,7 @@ namespace ssLprojectFSTest
 
 			var mockService = new Mock<IService>();
 			mockService.Setup(x => x.GetLogsList())
-					   .Returns(Task.FromResult(list))
+			           .ReturnsAsync(list)
 					   .Verifiable();
 
 			var logFacade = new LogFacade(mockService.Object);
@@ -34,8 +34,8 @@ namespace ssLprojectFSTest
 
 			//Assert
 			mockService.VerifyAll();
-			Assert.AreEqual(expected[0].Id, actual[0].Id);
-			Assert.AreEqual(expected[0].Date, actual[0].Date);
+			Assert.AreEqual(expected.ToList()[0].Id, actual.ToList()[0].Id);
+			Assert.AreEqual(expected.ToList()[0].Date, actual.ToList()[0].Date);
 		}
 
 		[Test]
