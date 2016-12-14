@@ -3,7 +3,6 @@ using GenFu;
 using System.Linq;
 using ssLprojectFS;
 using NUnit.Framework;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 
 namespace ssLprojectFSTest
@@ -12,7 +11,7 @@ namespace ssLprojectFSTest
 	public class LogFacadeTest
 	{
 		[Test]
-		public void GetLogsListReturnsListOfLogsShort()
+		public void GetLogsListReturnsListOfMobileLogsShortModel()
 		{
 			//Arrange
 			List<MobileLogModel> list = A.ListOf<MobileLogModel>(100);
@@ -35,7 +34,64 @@ namespace ssLprojectFSTest
 			//Assert
 			mockService.VerifyAll();
 			Assert.AreEqual(expected.ToList()[0].Id, actual.ToList()[0].Id);
-			Assert.AreEqual(expected.ToList()[0].Date, actual.ToList()[0].Date);
+		}
+
+		[Test]
+		[TestCase(0, 20)]
+		public void GetNextPartOfLogsListTakesZeroAsIndexAndTwentyAsCountReturnsPartOfFirstTwentyElementsFromListOfLogsShortModel(int index, int count)
+		{
+			//Arrange
+			List<MobileLogModel> list = A.ListOf<MobileLogModel>(27);
+			List<MobileLogShortModel> expected = list.Select((item) => new MobileLogShortModel
+			{
+				Id = item.Id,
+				Date = item.Date
+			})
+			                                         .ToList()
+													 .GetRange(index, count);
+
+			var mockService = new Mock<IService>();
+			mockService.Setup(x => x.GetLogsList())
+					   .ReturnsAsync(list)
+					   .Verifiable();
+
+			var logFacade = new LogFacade(mockService.Object);
+
+			//Act
+			var actual = logFacade.GetNextPartOfLogsList(index, count);
+
+			//Assert
+			mockService.VerifyAll();
+			Assert.AreEqual(expected.Count, actual.ToList().Count);
+		}
+
+		[Test]
+		[TestCase(20, 20)]
+		public void GetNextPartOfLogsListTakesTwentyAsIndexAndTwentyAsCountReturnsTheLastPartOfSevenElementsFromListOfLogsShortModel(int index, int count)
+		{
+			//Arrange
+			List<MobileLogModel> list = A.ListOf<MobileLogModel>(27);
+			List<MobileLogShortModel> expected = list.Select((item) => new MobileLogShortModel
+			{
+				Id = item.Id,
+				Date = item.Date
+			})
+													 .ToList()
+			                                         .GetRange(index, list.Count - index);
+
+			var mockService = new Mock<IService>();
+			mockService.Setup(x => x.GetLogsList())
+					   .ReturnsAsync(list)
+					   .Verifiable();
+
+			var logFacade = new LogFacade(mockService.Object);
+
+			//Act
+			var actual = logFacade.GetNextPartOfLogsList(index, count);
+
+			//Assert
+			mockService.VerifyAll();
+			Assert.AreEqual(expected.Count, actual.ToList().Count);
 		}
 
 		[Test]
@@ -55,7 +111,7 @@ namespace ssLprojectFSTest
 
 			var mockService = new Mock<IService>();
 			mockService.Setup(x => x.GetLogsList())
-			           .Returns(Task.FromResult(list))
+			           .ReturnsAsync(list)
 					   .Verifiable();
 
 			var logFacade = new LogFacade(mockService.Object);
@@ -66,8 +122,6 @@ namespace ssLprojectFSTest
 			//Assert
 			mockService.VerifyAll();
 			Assert.AreEqual(expected.Id, actual.Id);
-			Assert.AreEqual(expected.ApplicationName, actual.ApplicationName);
-			Assert.AreEqual(expected.Version, actual.Version);
 		}
 	}
 }
